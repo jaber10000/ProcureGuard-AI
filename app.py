@@ -3,7 +3,7 @@ from __future__ import annotations
 import base64, html, os, sys
 from collections import Counter
 from pathlib import Path
-
+import fitz
 import pandas as pd
 import streamlit as st
 import streamlit.components.v1 as components
@@ -137,40 +137,38 @@ def basis_text(d: dict) -> str:
 def pdf_preview(d: dict, height: int = 650):
     p = store.pdf_path(d['sha256'])
 
-    # DEBUG
-    st.write("PDF Path:", p)
-    st.write("PDF Exists:", p.exists())
-
     if not p.exists():
-        st.warning('Original PDF file not found in storage.')
+        st.warning("Original PDF file not found.")
         return
 
-    pdf_bytes = p.read_bytes()
-    b64 = base64.b64encode(pdf_bytes).decode()
+    try:
+        doc = fitz.open(p)
 
-    st.markdown(
-        f"""
-        <embed
-            src="data:application/pdf;base64,{b64}"
-            width="100%"
-            height="{height}"
-            type="application/pdf">
-        """,
-        unsafe_allow_html=True,
-    )
+        for page_num in range(len(doc)):
+            page = doc[page_num]
+
+            pix = page.get_pixmap(
+                matrix=fitz.Matrix(2, 2)
+            )
+
+            st.image(
+                pix.tobytes("png"),
+                caption=f"Page {page_num + 1}",
+                use_container_width=True
+            )
+
+        doc.close()
+
+    except Exception as e:
+        st.error(f"PDF preview failed: {e}")
 
     st.download_button(
         "⇩ Download original PDF",
-        pdf_bytes,
-        d["file_name"],
-        "application/pdf",
-        key=f"dl_{d['id']}_{height}"
+        p.read_bytes(),
+        file_name=d["file_name"],
+        mime="application/pdf",
+        key=f"pdf_{d['id']}"
     )
-    st.link_button(
-        "🔍 Open PDF in New Tab",
-        f"data:application/pdf;base64,{base64.b64encode(p.read_bytes()).decode()}"
-    )
-
     st.success("PDF file found successfully.")
 
 # ---------- forms ----------
