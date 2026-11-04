@@ -136,11 +136,34 @@ def basis_text(d: dict) -> str:
 
 def pdf_preview(d: dict, height: int = 650):
     p = store.pdf_path(d['sha256'])
+
     if not p.exists():
-        st.warning('Original PDF file not found in storage.'); return
-    b64 = base64.b64encode(p.read_bytes()).decode()
-    components.html(f"<iframe src='data:application/pdf;base64,{b64}' width='100%' height='{height}' style='border:1px solid #1b3b35;border-radius:12px;background:#fff'></iframe>", height=height + 20)
-    st.download_button('⇩ Download original PDF', p.read_bytes(), d['file_name'], 'application/pdf', key=f"dl_{d['id']}_{height}")
+        st.warning("Original PDF file not found in storage.")
+        return
+
+    pdf_bytes = p.read_bytes()
+    b64 = base64.b64encode(pdf_bytes).decode()
+
+    st.markdown(
+        f"""
+        <embed
+            src="data:application/pdf;base64,{b64}"
+            width="100%"
+            height="{height}"
+            type="application/pdf">
+        """,
+        unsafe_allow_html=True,
+    )
+
+    st.download_button(
+        "⇩ Download original PDF",
+        pdf_bytes,
+        d["file_name"],
+        "application/pdf",
+        key=f"dl_{d['id']}_{height}"
+    )
+
+    st.success("PDF file found successfully.")
 
 # ---------- forms ----------
 def review_form(d: dict, key: str):
