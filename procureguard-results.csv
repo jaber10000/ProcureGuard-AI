@@ -1,0 +1,11 @@
+﻿file,supplier,decision,rule_ids,reasons
+supplier-pack-01.pdf,Padma Textile Mills Ltd,Approve,,
+supplier-pack-02.pdf,Jamuna Trims and Accessories,Approve,,
+supplier-pack-03.pdf,Karnaphuli Yarn Traders,Reject,PRICE-01,Unit price BDT 229.00 is more than 3% above the PR maximum BDT 210.00.
+supplier-pack-04.pdf,Surma Packaging Industries,Needs a person to check,PRICE-02,"Unit price BDT 6.65 is above the PR maximum BDT 6.50, but within 3%."
+supplier-pack-05.pdf,Meghna Carton Works,Reject,PAY-02,Advance payment 40% exceeds the 20% maximum.
+supplier-pack-06.pdf,Teesta Fabrics Ltd,Reject,DEL-01,No late-delivery penalty clause was found between the delivery and validity terms.
+supplier-pack-07.pdf,Rupsha Zipper Factory,Needs a person to check,QTY-01,"Quoted quantity differs from requested quantity by 17.5% (requested 20,000; quoted 16,500)."
+supplier-pack-08.pdf,Bhairab Thread and Co,Reject,TAX-01; TAX-02,Supplier TIN is missing. | Supplier BIN is missing.
+supplier-pack-09.pdf,Dhaleshwari Poly Pack,Needs a person to check,MATH-01; PAY-03,Quantity multiplied by unit price does not match the quoted line amount. | Payment timing is unclear; a person must confirm the agreed payment date.
+supplier-pack-10.pdf,Kushiyara Box Industries,Reject,DEL-05; VAT-01; MATH-03,Delivery in 60 days exceeds the 45-day maximum. | VAT is not shown separately at 15%. | Could not verify the quotation subtotal and total.
