@@ -166,6 +166,10 @@ def pdf_preview(d: dict, height: int = 650):
         "application/pdf",
         key=f"dl_{d['id']}_{height}"
     )
+    st.link_button(
+        "🔍 Open PDF in New Tab",
+        f"data:application/pdf;base64,{base64.b64encode(p.read_bytes()).decode()}"
+    )
 
     st.success("PDF file found successfully.")
 
