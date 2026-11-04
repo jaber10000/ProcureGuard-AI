@@ -137,8 +137,12 @@ def basis_text(d: dict) -> str:
 def pdf_preview(d: dict, height: int = 650):
     p = store.pdf_path(d['sha256'])
 
+    # DEBUG
+    st.write("PDF Path:", p)
+    st.write("PDF Exists:", p.exists())
+
     if not p.exists():
-        st.warning("Original PDF file not found in storage.")
+        st.warning('Original PDF file not found in storage.')
         return
 
     pdf_bytes = p.read_bytes()
