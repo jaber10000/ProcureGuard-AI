@@ -26,7 +26,54 @@ Dashboard Overview · Upload Documents · All Documents · Approved · Rejected 
 - **Duplicates:** identical files (SHA-256) are detected and not processed twice.
 - **Failure isolation:** a corrupt/unreadable file is reported as failed; the other files in the batch are still processed.
 - **No guessing:** a PDF with no recognisable quotation data goes to Human Review (`EXT-00`), never to Approve/Reject.
-- **Document detail:** supplier info, quotation details, PR comparison, every rule with Rule ID + exact PDF evidence, how far limits were exceeded, original PDF preview, audit trail.
+- **Document detaProcureGuard AI
+Overview
+
+ProcureGuard AI is a supplier quotation verification system that analyzes supplier PDF quotations and validates them against purchase requests and company procurement rules. The system produces evidence-backed decisions: Approved, Rejected, or Human Review.
+
+Features
+PDF quotation processing
+Automatic field extraction
+Purchase request comparison
+Rule-based validation engine
+Evidence-backed decisions
+Human review workflow
+Audit trail tracking
+Reports and CSV export
+Technology Stack
+Python
+Streamlit
+PyMuPDF (fitz)
+Pandas
+How It Works
+Upload supplier quotation PDFs.
+Extract information from documents.
+Compare quotation details against purchase requests.
+Apply company validation rules.
+Generate Approved, Rejected, or Human Review decisions.
+Display evidence and audit history.
+Current Limitations
+Optimized for text-based PDFs.
+Scanned PDFs require OCR support.
+Limited support for complex multi-item quotations.
+Unfamiliar document layouts may require additional parsing rules.
+Future Improvements
+OCR integration
+Multiple line-item support
+Additional supplier templates
+Enhanced audit and reviewer workflows
+Larger-scale evaluation dataset support
+Run Locally
+Shell
+git clone <repository-url>
+cd procureguard
+ 
+pip install -r requirements.txt
+ 
+streamlit run app.py
+Author
+
+Abdullah Al Jabeil:** supplier info, quotation details, PR comparison, every rule with Rule ID + exact PDF evidence, how far limits were exceeded, original PDF preview, audit trail.
 - **Human Review:** reviewer name, time, comment and decision (Approve / Reject / Request More Information) are saved in their own table, separate from the AI decision.
 - **Admin override:** the AI decision is never modified. An admin override (mandatory reason) changes only the final status and is written to the audit log.
 - **Reports:** status chart, rule-finding frequency, CSV export of documents and of the audit log.
