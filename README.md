@@ -163,7 +163,7 @@ The tests are designed to verify the document-processing pipeline, decision clas
 **Md. Abdullah Al Jaber**
 
 - GitHub: [@jaber10000](https://github.com/jaber10000)
-- Project: [ProcureGuard AI](https://github.com/jaber10000/ProcureGuard-AI)
+- Project: [ProcureGuard AI](https://lbvuklvmbyf2appsecl5ueg.streamlit.app/)
 
 ---
 
