@@ -1,12 +1,17 @@
-ProcureGuard AI
+🛡️ ProcureGuard AI
 Overview
 
-ProcureGuard AI is a supplier quotation verification system that analyzes supplier PDF quotations and validates them against purchase requests and company procurement rules. The system produces evidence-backed decisions: Approved, Rejected, or Human Review.
+ProcureGuard AI is a supplier quotation verification system that analyzes supplier PDF quotations and validates them against purchase requests and company procurement rules.
 
+The system extracts information from supplier quotations, applies validation rules, and generates evidence-backed decisions:
+
+✅ Approved
+❌ Rejected
+⚠️ Human Review
 Features
 PDF quotation processing
 Automatic field extraction
-Purchase request comparison
+Purchase Request comparison
 Rule-based validation engine
 Evidence-backed decisions
 Human review workflow
@@ -17,14 +22,56 @@ Python
 Streamlit
 PyMuPDF (fitz)
 Pandas
+Project Structure
+Plain Text
+procureguard/
+│
+├── app.py
+├── requirements.txt
+├── data/
+├── storage/
+├── src/
+└── tests/
+Installation
+1. Clone the Repository
+Shell
+git clone https://github.com/jaber10000/ProcureGuard-AI.git
+cd ProcureGuard-AI/procureguard
+2. Create a Virtual Environment
+Shell
+python -m venv .venv
+3. Activate the Virtual Environment
+Windows
+Shell
+.venv\Scripts\activate
+Linux/macOS
+Shell
+source .venv/bin/activate
+4. Install Dependencies
+Shell
+pip install -r requirements.txt
+Running the Application
+
+Start the Streamlit application:
+
+Shell
+streamlit run app.py
+
+After startup, open the URL shown in the terminal, usually:
+
+Plain Text
+http://localhost:8501
 How It Works
 Upload supplier quotation PDFs.
-Extract information from documents.
-Compare quotation details against purchase requests.
-Apply company validation rules.
-Generate Approved, Rejected, or Human Review decisions.
+Extract supplier and quotation information.
+Compare data with the purchase request.
+Apply procurement validation rules.
+Generate one of three outcomes:
+Approved
+Rejected
+Human Review
 Display evidence and audit history.
-Current Limitations
+Limitations
 Optimized for text-based PDFs.
 Scanned PDFs require OCR support.
 Limited support for complex multi-item quotations.
@@ -33,16 +80,10 @@ Future Improvements
 OCR integration
 Multiple line-item support
 Additional supplier templates
-Enhanced audit and reviewer workflows
-Larger-scale evaluation dataset support
-Run Locally
-Shell
-git clone https://github.com/jaber10000/ProcureGuard-AI
-cd procureguard
- 
-pip install -r requirements.txt
- 
-streamlit run app.py
+Enhanced audit workflows
+Larger evaluation datasets
 Author
 
-Abdullah Al Jaber
+Md. Abdullah Al Jaber
+
+GitHub: https://github.com/jaber10000/ProcureGuard-AI
